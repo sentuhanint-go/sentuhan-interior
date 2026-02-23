@@ -3,220 +3,299 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sentuhan Interior Studio</title>
 
-<!-- SEO -->
-<title>Sentuhan Interior | Jasa Desain Interior Gorontalo</title>
-<meta name="description" content="Jasa desain interior modern & luxury di Gorontalo. Wujudkan ruang impian Anda bersama Sentuhan Interior.">
-<meta name="keywords" content="desain interior Gorontalo, jasa interior, interior modern, interior luxury">
-<meta name="author" content="Sentuhan Interior">
-
-<!-- Open Graph (Preview WhatsApp / Facebook) -->
-<meta property="og:title" content="Sentuhan Interior">
-<meta property="og:description" content="Luxury Interior Experience">
-<meta property="og:type" content="website">
-<meta property="og:image" content="https://source.unsplash.com/1200x630/?luxury,interior">
-
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;600&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
-<!-- GSAP -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --cream:#f6f1e9;
-  --gold:#bfa37a;
-  --dark:#111;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+html{
+scroll-behavior:smooth;
+}
 
 body{
-  font-family:'Inter',sans-serif;
-  background:var(--cream);
-  color:#333;
-  scroll-behavior:smooth;
+background:#0e0f14;
+color:#f5f5f5;
+font-family:'Inter',sans-serif;
+overflow-x:hidden;
 }
 
+/* ================= VIDEO LOADER ================= */
+
+#video-loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+z-index:9999;
+transition:opacity 1.2s ease, visibility 1.2s ease;
+}
+
+#video-loader video{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.overlay-logo{
+position:relative;
+z-index:2;
+color:#c9a44c;
+font-family:'Playfair Display',serif;
+font-size:42px;
+letter-spacing:4px;
+animation:fadeUp 2s ease;
+}
+
+@keyframes fadeUp{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+.hide-loader{
+opacity:0;
+visibility:hidden;
+}
+
+/* ================= NAVBAR ================= */
+
 nav{
-  position:fixed;
-  width:100%;
-  top:0;
-  padding:20px 8%;
-  display:flex;
-  justify-content:space-between;
-  backdrop-filter:blur(12px);
-  background:rgba(255,255,255,0.6);
-  z-index:1000;
+position:fixed;
+top:0;
+width:100%;
+padding:25px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:rgba(14,15,20,0.35);
+backdrop-filter:blur(12px);
+z-index:1000;
+}
+
+.logo{
+font-family:'Playfair Display',serif;
+color:#c9a44c;
+letter-spacing:2px;
 }
 
 nav a{
-  text-decoration:none;
-  margin-left:25px;
-  font-size:14px;
-  color:#333;
+color:#f5f5f5;
+text-decoration:none;
+margin-left:35px;
+font-size:14px;
+letter-spacing:1px;
+transition:0.3s;
 }
+
+nav a:hover{
+color:#c9a44c;
+}
+
+/* ================= HERO ================= */
 
 .hero{
-  height:100vh;
-  background:url('FB_IMG_1742646908917.jpg') center/cover;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:white;
-  position:relative;
-}
-
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0.5);
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+background:
+linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.85)),
+url('best.jpg') center/cover no-repeat;
 }
 
 .hero h1{
-  font-family:'Bodoni Moda',serif;
-  font-size:64px;
+font-family:'Playfair Display',serif;
+font-size:70px;
+letter-spacing:3px;
 }
+
+.hero p{
+margin-top:25px;
+color:#cbd5e1;
+font-size:18px;
+}
+
+.cta{
+margin-top:40px;
+padding:16px 45px;
+border:1px solid #c9a44c;
+color:#c9a44c;
+text-decoration:none;
+transition:0.4s;
+}
+
+.cta:hover{
+background:#c9a44c;
+color:#0e0f14;
+}
+
+/* ================= SECTION ================= */
 
 section{
-  padding:120px 8%;
+padding:160px 8%;
 }
 
-.gallery{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:25px;
+.gold{
+color:#c9a44c;
+font-family:'Playfair Display',serif;
+font-size:36px;
 }
 
-.gallery img{
-  width:100%;
-  border-radius:12px;
+/* ================= PORTFOLIO ================= */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:60px;
+margin-top:90px;
 }
 
-.section-dark{
-  background:var(--dark);
-  color:white;
+.grid img{
+width:100%;
+border-radius:10px;
+transition:0.6s;
 }
 
-/* FORM */
-form{
-  max-width:500px;
-  display:flex;
-  flex-direction:column;
-  gap:15px;
+.grid img:hover{
+transform:scale(1.07);
 }
 
-input,textarea{
-  padding:14px;
-  border:none;
-  border-radius:6px;
+/* ================= CONTACT ================= */
+
+.contact{
+text-align:center;
 }
 
-button{
-  padding:14px;
-  border:none;
-  background:var(--gold);
-  color:white;
-  cursor:pointer;
-  border-radius:6px;
+.contact p{
+margin-top:20px;
+color:#9ca3af;
 }
 
-.whatsapp{
-  position:fixed;
-  bottom:30px;
-  right:30px;
-  background:var(--gold);
-  color:white;
-  padding:14px 18px;
-  border-radius:40px;
-  text-decoration:none;
+/* ================= WA BUTTON ================= */
+
+.wa{
+position:fixed;
+bottom:40px;
+right:40px;
+background:#c9a44c;
+color:#0e0f14;
+padding:15px 30px;
+border-radius:50px;
+text-decoration:none;
+font-weight:600;
+box-shadow:0 20px 40px rgba(0,0,0,0.4);
+transition:0.4s;
 }
 
-@media(max-width:768px){
-  .hero h1{font-size:40px;}
+.wa:hover{
+transform:translateY(-6px);
 }
+
+footer{
+padding:80px 8%;
+border-top:1px solid rgba(255,255,255,0.08);
+text-align:center;
+color:#9ca3af;
+}
+
 </style>
 </head>
 
 <body>
 
-<nav>
-  <div><strong>Sentuhan Interior Gorontalo</strong></div>
-  <div>
-    <a href="#about">About</a>
-    <a href="#portfolio">Portfolio</a>
-    <a href="#contact">Contact</a>
+<!-- ================= VIDEO LOADER ================= -->
+<div id="video-loader">
+  <video autoplay muted playsinline id="loader-video">
+    <source src="loading.mp4" type="video/mp4">
+  </video>
+  <div class="overlay-logo">
   </div>
+</div>
+
+<!-- ================= NAVBAR ================= -->
+<nav>
+<div class="logo">Sentuhan Interior</div>
+<div>
+<a href="#about">About</a>
+<a href="#portfolio">Portfolio</a>
+<a href="#contact">Contact</a>
+</div>
 </nav>
 
+<!-- ================= HERO ================= -->
 <section class="hero">
-  <div class="hero-content">
-    <h1>Sentuhan Interior Gorontalo</h1>
-    <p>Desain Modern & Elegan di Gorontalo</p>
-  </div>
+<div>
+<h1>Ruang yang Berbicara</h1>
+<p>Luxury Interior Design Studio</p>
+<a href="https://wa.me/6289684247294" class="cta">Konsultasi Proyek</a>
+</div>
 </section>
 
+<!-- ================= ABOUT ================= -->
 <section id="about">
-  <h2>Tentang Kami</h2>
-  <p>Kami menghadirkan desain interior modern dengan sentuhan luxury dan detail presisi tinggi.</p>
+<h2 class="gold">Design Philosophy</h2>
+<p style="margin-top:30px;color:#9ca3af;max-width:800px;">
+Kami menciptakan ruang dengan pendekatan estetika modern,
+detail presisi, dan karakter yang kuat.
+Setiap proyek dirancang untuk menghadirkan pengalaman ruang yang eksklusif.
+</p>
 </section>
 
+<!-- ================= PORTFOLIO ================= -->
 <section id="portfolio">
-  <h2>Portfolio</h2>
-  <div class="gallery">
-    <img src="FB_IMG_1771498009054.jpg">
-    <img src="FB_IMG_1770884644986.jpg">
-    <img src="plafon1.jpg">
-    <img src="plafon4.jpg">
-  </div>
+<h2 class="gold">Selected Projects</h2>
+
+<div class="grid">
+<img src="project1.jpg">
+<img src="project2.jpg">
+<img src="project3.jpg">
+<img src="project4.jpg">
+<img src="project5.jpg">
+<img src="project6.jpg">
+</div>
 </section>
 
-<section id="contact" class="section-dark">
-  <h2>Hubungi Kami</h2>
-
-  <!-- Netlify Form -->
-  <form name="contact" method="POST" data-netlify="true">
-    <input type="hidden" name="form-name" value="contact">
-    <input type="text" name="nama" placeholder="Nama" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <textarea name="pesan" rows="4" placeholder="Pesan" required></textarea>
-    <button type="submit">Kirim Pesan</button>
-  </form>
-
-  <p style="margin-top:30px;">Email: sentuhanintgo@gmail.com</p>
-  <p>WhatsApp: +62 896 8424 7294</p>
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="contact">
+<h2 class="gold">Let's Collaborate</h2>
+<p>Hubungi kami untuk konsultasi desain interior Anda.</p>
+<p style="margin-top:20px;">WhatsApp: 089684247294</p>
 </section>
 
-<a href="https://wa.me/6289684247294"
-class="whatsapp">Chat WhatsApp</a>
+<footer>
+© 2026 Sentuhan Interior Studio
+</footer>
 
+<a href="https://wa.me/6289684247294" class="wa">
+Chat WhatsApp
+</a>
+
+<!-- ================= SCRIPT ================= -->
 <script>
-gsap.registerPlugin(ScrollTrigger);
+const loader = document.getElementById("video-loader");
+const video = document.getElementById("loader-video");
 
-gsap.from(".hero h1",{y:100,opacity:0,duration:1.5});
-
-gsap.utils.toArray("section").forEach(section=>{
-  gsap.from(section,{
-    opacity:0,
-    y:80,
-    duration:1,
-    scrollTrigger:{
-      trigger:section,
-      start:"top 85%"
-    }
-  });
+video.addEventListener("ended", function(){
+    loader.classList.add("hide-loader");
 });
+
+setTimeout(function(){
+    loader.classList.add("hide-loader");
+}, 6000);
 </script>
 
 </body>
-
 </html>
-
