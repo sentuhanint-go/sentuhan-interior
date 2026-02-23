@@ -99,8 +99,8 @@
             color: white;
         }
 
-        /* Loader */
-        .loader-overlay {
+        /* Loader - FIXED */
+        #loader {
             position: fixed;
             inset: 0;
             background: #F9F7F2;
@@ -110,18 +110,27 @@
             align-items: center;
             transition: opacity 0.8s ease-out, visibility 0.8s;
         }
-        .loader-hidden {
+        #loader.hidden-loader {
             opacity: 0;
             visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-content {
+            text-align: center;
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
         }
     </style>
 </head>
 <body class="font-sans text-gray-800 bg-cream antialiased overflow-x-hidden">
 
-    <!-- Preloader -->
-    <div id="loader" class="loader-overlay">
-        <div class="text-center">
-            <h1 class="font-serif text-4xl text-charcoal tracking-widest animate-pulse">SENTUHAN<span class="text-gorontalo-600">INTERIOR</span></h1>
+    <!-- Preloader - FIXED -->
+    <div id="loader">
+        <div class="loader-content">
+            <h1 class="font-serif text-4xl text-charcoal tracking-widest">SENTUHAN<span class="text-gorontalo-600">INTERIOR</span></h1>
             <p class="text-xs uppercase tracking-[0.3em] mt-2 text-gray-500">Gorontalo</p>
         </div>
     </div>
@@ -315,7 +324,4 @@
                 <div class="flex space-x-6 mt-6 md:mt-0 overflow-x-auto pb-2 md:pb-0" id="portfolio-filters">
                     <button class="filter-btn active text-sm uppercase tracking-widest text-gorontalo-400 border-b border-gorontalo-400 pb-1" data-filter="all">Semua</button>
                     <button class="filter-btn text-sm uppercase tracking-widest text-gray-400 hover:text-white transition-colors pb-1" data-filter="residential">Rumah</button>
-                    <button class="filter-btn text-sm uppercase tracking-widest text-gray-400 hover:text-white transition-colors pb-1" data-filter="commercial">Kantor</button>
-                    <button class="filter-btn text-sm uppercase tracking-widest text-gray-400 hover:text-white transition-colors pb-1" data-filter="kitchen">Dapur</button>
-                </div>
-            </d
+                    <button class="filter-btn text-sm uppercase tracking-widest text-gray-400 hover:text-white transition-col
