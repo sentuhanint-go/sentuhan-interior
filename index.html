@@ -35,42 +35,8 @@
     </script>
 
     <style>
-        /* CRITICAL: Preloader Styles - Pastikan ini di atas */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #F9F7F2;
-            z-index: 999999;
-            display: flex !important;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
-        }
+        /* NO PRELOADER - Website langsung tampil */
         
-        #loader.hide {
-            opacity: 0 !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
-        }
-
-        .loader-content {
-            text-align: center;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(0.98); }
-        }
-
-        /* Hide body scroll saat loading */
-        body.loading {
-            overflow: hidden !important;
-        }
-
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
@@ -95,26 +61,27 @@
         }
 
         /* Image Hover */
+        .portfolio-item {
+            overflow: hidden;
+        }
         .portfolio-item img {
             transition: transform 0.7s ease;
         }
         .portfolio-item:hover img {
             transform: scale(1.1);
         }
+        
+        /* Simple fade in on load */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
-<body class="font-sans text-gray-800 bg-cream antialiased loading">
-
-    <!-- PRELOADER - Simple & Reliable -->
-    <div id="loader">
-        <div class="loader-content">
-            <h1 class="font-serif text-3xl md:text-4xl text-charcoal tracking-widest">
-                SENTUHAN<span class="text-gorontalo-600">INTERIOR</span>
-            </h1>
-            <p class="text-xs uppercase tracking-[0.3em] mt-2 text-gray-500">Gorontalo</p>
-            <p class="text-xs text-gray-400 mt-4">Klik untuk memulai</p>
-        </div>
-    </div>
+<body class="font-sans text-gray-800 bg-cream antialiased">
 
     <!-- Navigation -->
     <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 px-6 lg:px-12 flex justify-between items-center text-white mix-blend-difference">
@@ -149,11 +116,11 @@
     </div>
 
     <!-- Hero Section -->
-    <header id="home" class="relative h-screen w-full overflow-hidden flex items-center justify-center">
+    <header id="home" class="relative h-screen w-full overflow-hidden flex items-center justify-center fade-in">
         <div class="absolute inset-0 z-0">
             <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80" 
                  alt="Luxury Interior" 
-                 class="w-full h-full object-cover scale-110" 
+                 class="w-full h-full object-cover"
                  id="hero-bg">
             <div class="absolute inset-0 bg-black/50"></div>
         </div>
@@ -259,7 +226,7 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="portfolio-item group relative overflow-hidden h-[400px]">
+                <div class="portfolio-item group relative h-[400px]">
                     <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Project" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center">
                         <h4 class="font-serif text-2xl italic">Ruang Tamu Modern</h4>
@@ -267,7 +234,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-item group relative overflow-hidden h-[400px]">
+                <div class="portfolio-item group relative h-[400px]">
                     <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kitchen" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center">
                         <h4 class="font-serif text-2xl italic">Kitchen Set</h4>
@@ -275,7 +242,7 @@
                     </div>
                 </div>
 
-                <div class="portfolio-item group relative overflow-hidden h-[400px]">
+                <div class="portfolio-item group relative h-[400px]">
                     <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Bedroom" class="w-full h-full object-cover">
                     <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-center items-center">
                         <h4 class="font-serif text-2xl italic">Kamar Tidur</h4>
@@ -331,10 +298,10 @@
                 </div>
 
                 <div class="bg-cream p-8 shadow-2xl scroll-trigger">
-                    <form onsubmit="event.preventDefault(); alert('Terima kasih! Pesan terkirim.');" class="space-y-6">
-                        <input type="text" class="w-full bg-white border border-gray-200 p-3 focus:border-gorontalo-400 outline-none" placeholder="Nama Lengkap" required>
-                        <input type="tel" class="w-full bg-white border border-gray-200 p-3 focus:border-gorontalo-400 outline-none" placeholder="Nomor WhatsApp" required>
-                        <textarea rows="4" class="w-full bg-white border border-gray-200 p-3 focus:border-gorontalo-400 outline-none" placeholder="Detail kebutuhan..." required></textarea>
+                    <form action="https://formspree.io/f/xnqevjdr" method="POST" class="space-y-6">
+                        <input type="text" name="name" class="w-full bg-white border border-gray-200 p-3 focus:border-gorontalo-400 outline-none" placeholder="Nama Lengkap" required>
+                        <input type="tel" name="phone" class="w-full bg-white border border-gray-200 p-3 focus:border-gorontalo-400 outline-none" placeholder="Nomor WhatsApp" required>
+                        <textarea name="message" rows="4" class="w-full bg-white border border-gray-200 p-3 focus:border-gorontalo-400 outline-none" placeholder="Detail kebutuhan..." required></textarea>
                         <button type="submit" class="w-full bg-gorontalo-600 text-white py-4 uppercase tracking-widest text-sm hover:bg-gorontalo-700 transition-colors">
                             Kirim Pesan
                         </button>
@@ -364,4 +331,64 @@
             <div class="border-t border-gray-800 pt-8 mt-8 text-center text-xs text-gray-500">
                 <p>&copy; 2024 Sentuhan Interior Gorontalo. All rights reserved.</p>
             </div>
-    
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/6289684247294" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- MINIMAL JAVASCRIPT -->
+    <script>
+        // Navbar scroll effect
+        window.onscroll = function() {
+            var nav = document.getElementById('navbar');
+            if (window.pageYOffset > 50) {
+                nav.classList.add('bg-white', 'text-charcoal');
+                nav.classList.remove('text-white', 'mix-blend-difference');
+            } else {
+                nav.classList.remove('bg-white', 'text-charcoal');
+                nav.classList.add('text-white', 'mix-blend-difference');
+            }
+        };
+
+        // Mobile menu
+        var btn = document.getElementById('mobile-menu-btn');
+        var menu = document.getElementById('mobile-menu');
+        var open = false;
+        
+        btn.onclick = function() {
+            open = !open;
+            if (open) {
+                menu.classList.remove('translate-x-full');
+            } else {
+                menu.classList.add('translate-x-full');
+            }
+        };
+
+        // Close menu when link clicked
+        var links = document.getElementsByClassName('mobile-link');
+        for (var i = 0; i < links.length; i++) {
+            links[i].onclick = function() {
+                menu.classList.add('translate-x-full');
+                open = false;
+            };
+        }
+
+        // Scroll animation
+        var triggers = document.querySelectorAll('.scroll-trigger');
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {threshold: 0.1});
+        
+        triggers.forEach(function(el) {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
